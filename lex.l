@@ -1,5 +1,26 @@
-{definitions}
+		/*** Definition section ***/
+
+%{
+  /*C code to be copied verbatim*/
+  #include <stdio.h>
+%}
+
+/* This tells flex to read only one input file */
+%option noyywrap
+
 %%
-{rules}
+
+		/*** Rules section ***/
+
+/* [0-9]+ matches a string of one or more digits */
+[0-9]+  {
+			/* yytext is a string containing the matched text. */
+			printf("Saw an integer: %s\n", yytext);
+		}
+.|\n    {
+			/* Ignore all other characters. */
+		}
+
 %%
-{user subroutines}
+
+		/*** C Code section ***/
