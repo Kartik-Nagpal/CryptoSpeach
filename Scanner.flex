@@ -4,13 +4,13 @@
 %option noyywrap
 
 dig		  [0-9]
-alpha		  [a-fA-F]
+alpha		  [a-zA-Z]
 hexnum     ({digit}|{alpha}){1,8}
 hex		  0[xX]{hexnum}
 
 %%
 
-[dig]+  {
+[0-9]+  {
 			printf("the integer %s", yytext);
 }
 int     {
@@ -37,7 +37,7 @@ string  {
 [%]     {
          printf(" modulus ", yytext);
 }
-.        {
+[a-zA-Z]        {
          printf(" variable %s ", yytext);
 }
 .|\n    {
